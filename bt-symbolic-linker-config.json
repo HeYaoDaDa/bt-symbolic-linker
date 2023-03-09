@@ -1,0 +1,15 @@
+{
+    "path_maps": [
+        {
+            "src": "/home/jiawei/Downloads/n1",
+            "dst": "/home/jiawei/Downloads/n1test"
+        }
+    ],
+    "include": [
+        ".mp4",
+        ".sh",
+        "emmc",
+        "_0"
+    ],
+    "cache": true
+}

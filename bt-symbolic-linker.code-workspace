@@ -1,0 +1,23 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"editor.formatOnSave": true
+	},
+	"launch": {
+		"version": "0.2.0",
+		"configurations": [
+			{
+				"name": "Launch",
+				"type": "python",
+				"request": "launch",
+				"program": "main.py",
+				"console": "integratedTerminal",
+				"args": ["/home/jiawei/VsCodeProjects/bt-symbolic-linker/bt-symbolic-linker-config.json","/home/jiawei/VsCodeProjects/bt-symbolic-linker/bt-symbolic-linker-cache.json"]
+			}
+		]
+	}
+}

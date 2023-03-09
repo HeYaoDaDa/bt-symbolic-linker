@@ -1,0 +1,15 @@
+[
+    {
+        "name": "/home/jiawei/Downloads/n1",
+        "sub": [
+            "installtoemmc",
+            "log.sh",
+            {
+                "name": "scripts",
+                "sub": [
+                    "s905_autoscript_0"
+                ]
+            }
+        ]
+    }
+]
