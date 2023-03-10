@@ -2,6 +2,7 @@ import argparse
 import pathlib
 import typing
 import json
+from watchfiles import watch
 
 
 class CacheDir:
@@ -159,10 +160,16 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Bt/Pt symbolic link tool")
     parser.add_argument("config", help="config json file")
     parser.add_argument("cache", help="cache json file")
+    parser.add_argument("flag", help="watch file")
     args = parser.parse_args()
 
     config_str: str = args.config
     cache_str: str | None = args.cache
+    flag_str: str | None = args.flag
+
+    if flag_str:
+        for changes in watch(flag_str):
+            print(changes)
 
     config_path: pathlib.Path = pathlib.Path(config_str)
     if not config_path.exists():
