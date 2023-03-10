@@ -17,9 +17,9 @@
 				"program": "main.py",
 				"console": "integratedTerminal",
 				"args": [
-					"/home/jiawei/VsCodeProjects/bt-symbolic-linker/bt-symbolic-linker-config.json",
-					"/home/jiawei/VsCodeProjects/bt-symbolic-linker/bt-symbolic-linker-cache.json",
-					"/home/jiawei/VsCodeProjects/bt-symbolic-linker/flag"
+					"/home/jiawei/VsCodeProjects/bt-symbolic-linker/test/bt-symbolic-linker-config.json",
+					"/home/jiawei/VsCodeProjects/bt-symbolic-linker/test/bt-symbolic-linker-cache.json",
+					"/home/jiawei/VsCodeProjects/bt-symbolic-linker/test/flag"
 				]
 			}
 		]

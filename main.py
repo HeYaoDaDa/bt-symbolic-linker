@@ -151,26 +151,15 @@ def link_directory(
                     dst_path.unlink()
                 dst_path.symlink_to(src_sub)
                 new_link_files.append(src_sub)
+                print(f"+ link {str(src_sub)}")
+            else:
+                print(f". miss {str(src_sub)}")
         else:
             new_link_files.extend(link_directory(config, caches, src_sub, dst_dir))
     return new_link_files
 
 
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Bt/Pt symbolic link tool")
-    parser.add_argument("config", help="config json file")
-    parser.add_argument("cache", help="cache json file")
-    parser.add_argument("flag", help="watch file")
-    args = parser.parse_args()
-
-    config_str: str = args.config
-    cache_str: str | None = args.cache
-    flag_str: str | None = args.flag
-
-    if flag_str:
-        for changes in watch(flag_str):
-            print(changes)
-
+def link(config_str: str, cache_str: str | None) -> None:
     config_path: pathlib.Path = pathlib.Path(config_str)
     if not config_path.exists():
         raise FileNotFoundError(str(config_path))
@@ -193,11 +182,13 @@ if __name__ == "__main__":
     caches = cache_dirs_to_strs(cache_dirs)
     for path_map in config.path_maps:
         src_path = pathlib.Path(path_map["src"])
+        dst_dir = pathlib.Path(path_map["dst"])
+        print(f"\nlink {str(src_path)} > {str(dst_dir)}")
         new_link_files = link_directory(
             config,
             caches,
             src_path,
-            pathlib.Path(path_map["dst"]),
+            dst_dir,
             False,
         )
         for new_link_path in new_link_files:
@@ -206,3 +197,21 @@ if __name__ == "__main__":
     if config.cache:
         with cache_path.open("w") as f:
             f.write(json.dumps(cache_dirs, default=vars, sort_keys=True, indent=4))
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Bt/Pt symbolic link tool")
+    parser.add_argument("config", help="config json file")
+    parser.add_argument("cache", help="cache json file")
+    parser.add_argument("flag", help="watch file")
+    args = parser.parse_args()
+
+    config_str: str = args.config
+    cache_str: str | None = args.cache
+    flag_str: str | None = args.flag
+
+    if flag_str:
+        for changes in watch(flag_str):
+            link(config_str, cache_str)
+
+    link(config_str, cache_str)
